@@ -20,7 +20,7 @@ task("join-dao", "Join the Data DAO as a member")
         async function callRpc(method, params) {
             var options = {
               method: "POST",
-              url: "https://wss.hyperspace.node.glif.io/apigw/lotus/rpc/v1",
+              url: "https://api.calibration.node.glif.io/rpc/v1",
               headers: {
                 "Content-Type": "application/json",
               },
@@ -35,21 +35,21 @@ task("join-dao", "Join the Data DAO as a member")
             return JSON.parse(res.body).result;
           }
     
-        const MembershipNFT = await ethers.getContractFactory("MembershipNFT")
+        const OnHealthNFT = await ethers.getContractFactory("OnHealthNFT")
         console.log("Hello", signer.address)
-        const MembershipNFTContract = new ethers.Contract(nftcontract, MembershipNFT.interface, signer)
+        const OnHealthNFTContract = new ethers.Contract(nftcontract, OnHealthNFT.interface, signer)
         
         console.log("Minting Membership NFT ...");
 
-        await MembershipNFTContract.mint(signer.address, {
+        await OnHealthNFTContract.mint(signer.address, {
           gasLimit: 1000000000,
           maxPriorityFeePerGas: priorityFee
         })
 
-        const DataDAOExample = await ethers.getContractFactory("DataDAOExample")
-        const DataDAOExampleContract = new ethers.Contract(daocontract, DataDAOExample.interface, signer)
+        const OnHealthDataDAO = await ethers.getContractFactory("OnHealthDataDAO")
+        const OnHealthDataDAOContract = new ethers.Contract(daocontract, OnHealthDataDAO.interface, signer)
 
-        await DataDAOExampleContract.joinDAO({
+        await OnHealthDataDAOContract.joinDAO({
             gasLimit: 1000000000,
             maxPriorityFeePerGas: priorityFee
         })

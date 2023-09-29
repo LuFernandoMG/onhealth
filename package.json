@@ -1,7 +1,7 @@
 {
-    "name": "Data DAO",
-    "version": "0.0.0",
-    "description": "Data DAO Contract",
+    "name": "OnHealth DAO",
+    "version": "0.0.1",
+    "description": "OnHealth DAO Contracts and minimal functions",
     "scripts": {},
     "repository": {
         "type": "git",
@@ -31,6 +31,7 @@
         "@openzeppelin/contracts": "^4.8.0",
         "@zondax/solidity-bignumber": "^0.1.0",
         "cids": "^0.7.5",
+        "dotenv": "^16.3.1",
         "hardhat-deploy": "^0.11.22",
         "hardhat-deploy-ethers": "^0.3.0-beta.13",
         "solidity-cborutils": "^2.0.0"

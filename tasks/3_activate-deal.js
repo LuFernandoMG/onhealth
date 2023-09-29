@@ -22,7 +22,7 @@ task("activate-deal", "Activate a Deal Proposal")
         async function callRpc(method, params) {
             var options = {
               method: "POST",
-              url: "https://wss.hyperspace.node.glif.io/apigw/lotus/rpc/v1",
+              url: "https://api.calibration.node.glif.io/rpc/v1",
               headers: {
                 "Content-Type": "application/json",
               },
@@ -37,10 +37,10 @@ task("activate-deal", "Activate a Deal Proposal")
             return JSON.parse(res.body).result;
           }
     
-        const DataDAOExample = await ethers.getContractFactory("DataDAOExample")
-        const DataDAOExampleContract = new ethers.Contract(contractAddress, DataDAOExample.interface, signer)
+        const OnHealthDataDAO = await ethers.getContractFactory("OnHealthDataDAO")
+        const OnHealthDataDAOContract = new ethers.Contract(contractAddress, OnHealthDataDAO.interface, signer)
 
-        await DataDAOExampleContract.activateDataSetDealBySP(networkdealid, {
+        await OnHealthDataDAOContract.activateDataSetDealBySP(networkdealid, {
             gasLimit: 1000000000,
             maxPriorityFeePerGas: priorityFee
         })

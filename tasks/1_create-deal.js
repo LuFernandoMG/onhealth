@@ -25,7 +25,7 @@ task("create-deal", "Create a Deal Proposal")
         async function callRpc(method, params) {
             var options = {
               method: "POST",
-              url: "https://wss.hyperspace.node.glif.io/apigw/lotus/rpc/v1",
+              url: "https://api.calibration.node.glif.io/rpc/v1",
               headers: {
                 "Content-Type": "application/json",
               },
@@ -40,14 +40,14 @@ task("create-deal", "Create a Deal Proposal")
             return JSON.parse(res.body).result;
           }
     
-        const DataDAOExample = await ethers.getContractFactory("DataDAOExample")
-        const DataDAOExampleContract = new ethers.Contract(contractAddress, DataDAOExample.interface, signer)
+        const OnHealthDataDAO = await ethers.getContractFactory("OnHealthDataDAO")
+        const OnHealthDataDAOContract = new ethers.Contract(contractAddress, OnHealthDataDAO.interface, signer)
 
         const cidHexRaw = new CID(cid).toString('base16').substring(1)
         const cidHex = "0x00" + cidHexRaw
         console.log("Bytes are:", cidHex)
 
-        await DataDAOExampleContract.createDataSetDealProposal(cidHex, size, dealDurationinDays, dealStorageFees, {
+        await OnHealthDataDAOContract.createDataSetDealProposal(cidHex, size, dealDurationinDays, dealStorageFees, {
             value: ethers.utils.parseEther(dealStorageFees),  
             gasLimit: 1000000000,
             maxPriorityFeePerGas: priorityFee

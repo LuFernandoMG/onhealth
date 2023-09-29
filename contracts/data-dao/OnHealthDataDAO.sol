@@ -4,21 +4,21 @@ pragma solidity ^0.8.13;
 import "./DataDAO.sol";
 import "../openzeppelin/contracts/token/ERC721/IERC721.sol";
 
-contract DataDAOExample is DataDAO {
+contract OnHealthDataDAO is DataDAO {
 
-    IERC721 public membershipNFT;
+    IERC721 public onHealthNFT;
 
     mapping(bytes => mapping(address => uint256)) public fundings;
     mapping(bytes => uint256) public dealStorageFees;
     mapping(bytes => uint64) public dealClient;
 
-    constructor(address[] memory admins, address _membershipNFT) DataDAO(admins) {
-        membershipNFT = IERC721(_membershipNFT);
+    constructor(address[] memory admins, address _onHealthNFT) DataDAO(admins) {
+        onHealthNFT = IERC721(_onHealthNFT);
     }
 
     /// @dev Function to allow members with membership NFT to join the DAO
     function joinDAO() public {
-        require(membershipNFT.balanceOf(msg.sender) > 0, "You are not the holder of DataDAO NFT");
+        require(onHealthNFT.balanceOf(msg.sender) > 0, "You are not the holder of DataDAO NFT");
         addUser(msg.sender, MEMBER_ROLE);
     }
 
